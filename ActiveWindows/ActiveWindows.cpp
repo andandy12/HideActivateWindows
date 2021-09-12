@@ -22,7 +22,7 @@ void moveWindow(bool Relative, int NewX, int NewY, HWND WindowToMove) {
     }
 }
 // Toggle Active Windows Watermark
-#ifdef toggle
+
 int main() {
     HWND windowActivateWindows = FindWindowA("Worker Window", NULL);
     std::printf("Found Worker Window: %llx \n", windowActivateWindows);
@@ -32,27 +32,14 @@ int main() {
             std::printf("Toggling to hide: %llx\n", windowActivateWindows);
             moveWindow(FALSE, -49, -243, windowActivateWindows);
         } else {
+#ifdef toggle
             ShowWindow(windowActivateWindows, SW_SHOW);
             std::printf("Toggling to show: %llx\n", windowActivateWindows);
             moveWindow(FALSE, 0, 0, windowActivateWindows); // we could move it to original spot but there is never really a need to turn it back on
-        }
-    }
-}
 #endif
-// Hide Active Windows Watermark 
-
 #ifndef toggle
-int main() {
-    HWND windowActivateWindows = FindWindowA("Worker Window", NULL);
-    std::printf("Found Worker Window: %llx \n", windowActivateWindows);
-    if (windowActivateWindows != NULL) {
-        if (IsWindowVisible(windowActivateWindows)) {
-            ShowWindow(windowActivateWindows, SW_HIDE);
-            std::printf("Toggling to hide: %llx\n", windowActivateWindows);
-            moveWindow(FALSE, -49, -243, windowActivateWindows);
-        } else {
             printf("Window is already hidden");
+#endif
         }
     }
 }
-#endif
