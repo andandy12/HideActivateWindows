@@ -36,8 +36,7 @@ int main() {
             ShowWindow(windowActivateWindows, SW_SHOW);
             std::printf("Toggling to show: %llx\n", windowActivateWindows);
             moveWindow(FALSE, 0, 0, windowActivateWindows); // we could move it to original spot but there is never really a need to turn it back on
-#endif
-#ifndef toggle
+#else
             printf("Window is already hidden");
 #endif
         }
